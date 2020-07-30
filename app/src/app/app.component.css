@@ -1,0 +1,18 @@
+
+ .side-nav {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #151515;
+    height: 100vh;
+    position: fixed;
+    top: 60.5px;
+	left: 0;
+}
+
+.page {
+    margin-left: 200px;
+    margin-top: 60.5px;
+    padding: 1px 16px;
+    height: 1000px;
+}

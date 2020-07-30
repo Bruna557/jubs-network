@@ -1,0 +1,19 @@
+/* Sidebar links */
+.vertical-nav a {
+    display: block;
+    color: grey;
+    padding: 16px;
+    text-decoration: none;
+}
+
+/* Active/current link */
+.vertical-nav a.active {
+    background-color: grey;
+    color: white;
+}
+
+/* Links on mouse-over */
+.vertical-nav a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
