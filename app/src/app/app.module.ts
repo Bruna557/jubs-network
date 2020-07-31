@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -14,6 +16,9 @@ import { FollowingComponent } from './components/following/following.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PostComponent } from './components/post/post.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+
+import { PostService } from './services/post.service';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -31,10 +36,16 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    HttpModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+
   ],
-  providers: [],
+  providers: [
+    UserService,
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

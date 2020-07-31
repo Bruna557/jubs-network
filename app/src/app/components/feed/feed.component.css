@@ -2,6 +2,31 @@ button {
     margin-left: 10px;
 }
 
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.post-card {
+    max-width: 400px;
+    border: 1px solid grey;
+    margin: 20px;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+/* .btn {
+    padding-bottom: 0.5px;
+    width: 56px;
+} */
+
+.mat-card-avatar {
+    height: 50px;
+    width: 50px;
+}
+
 /* .new-post-card {
     padding: 30px;
     width: 400px;
