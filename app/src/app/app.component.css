@@ -1,5 +1,17 @@
+.login-form {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
- .side-nav {
+.logo {
+    background-color: #151515;
+    padding: 10px;
+}
+
+.side-nav {
     margin: 0;
     padding: 0;
     width: 200px;

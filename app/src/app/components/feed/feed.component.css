@@ -1,5 +1,12 @@
-button {
-    margin-left: 10px;
+.card {
+    max-width: 400px;
+    margin: 20px;
+    border: 1px solid grey;
+}
+
+.card mat-card-avatar {
+    height: 50px;
+    width: 50px;
 }
 
 .example-header-image {
@@ -7,32 +14,10 @@ button {
     background-size: cover;
 }
 
-.post-card {
-    max-width: 400px;
-    border: 1px solid grey;
-    margin: 20px;
+.btn {
+    margin: 3px;
 }
 
 ul {
     list-style-type: none;
-  }
-
-/* .btn {
-    padding-bottom: 0.5px;
-    width: 56px;
-} */
-
-.mat-card-avatar {
-    height: 50px;
-    width: 50px;
 }
-
-/* .new-post-card {
-    padding: 30px;
-    width: 400px;
-    border: 1px solid grey;
-}
-
-.sample-post {
-    padding: 30px;
-} */

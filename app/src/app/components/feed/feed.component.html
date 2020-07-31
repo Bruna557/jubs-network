@@ -1,31 +1,48 @@
 <div class="container">
     <div class="create-post">
-        <create-post></create-post>
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>
+                    <h5>Doge</h5>
+                </mat-card-title>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-subtitle>
+                    <p>@thegoodestboy</p>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <input class="form-control input-lg" type="text" placeholder="What's on your mind?">
+            </mat-card-content>
+            <mat-card-actions>
+                <button type="submit" class="btn btn-dark">Post</button>
+                </mat-card-actions>
+        </mat-card>
     </div>
-
-    <div>
+    <div class="timeline">
         <ul class="posts">
             <li *ngFor="let post of posts">
-                <mat-card class="post-card">
-                    <mat-card-header>
-                        <mat-card-title>
-                            <h5>{{post.user.userName}}</h5>
-                        </mat-card-title>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-subtitle>
-                            <p></p>
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>{{post.postText}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button type="button" class="btn btn-dark">
-                            {{post.postVotes}}
-                            <mat-icon aria-hidden="false" aria-label="like icon">thumb_up_alt</mat-icon>
-                        </button>
-                      </mat-card-actions>
-                </mat-card>
+                <div>
+                    <mat-card class="card">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <h5>{{post.user.userName}}</h5>
+                            </mat-card-title>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-subtitle>
+                                <p></p>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>{{post.postText}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button type="button" class="btn btn-dark">
+                                {{post.postVotes}}
+                                <mat-icon aria-hidden="false" aria-label="like icon">thumb_up_alt</mat-icon>
+                            </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
             </li>
         </ul>
     </div>

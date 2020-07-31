@@ -14,8 +14,6 @@ import { FeedComponent } from './components/feed/feed.component';
 import { FollowersComponent } from './components/followers/followers.component';
 import { FollowingComponent } from './components/following/following.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PostComponent } from './components/post/post.component';
-import { CreatePostComponent } from './components/create-post/create-post.component';
 
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
@@ -29,9 +27,7 @@ import { UserService } from './services/user.service';
     FeedComponent,
     FollowersComponent,
     FollowingComponent,
-    ProfileComponent,
-    PostComponent,
-    CreatePostComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
