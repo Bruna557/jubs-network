@@ -1,0 +1,29 @@
+## Gradle ##
+# Directories #
+*/build/
+*/bin/
+*/.gradle/
+*/bin/
+*/target/
+
+## IntelliJ IDEA ##
+.idea
+*.iws
+*.iml
+*.ipr
+
+## Angular ##
+# compiled output
+dist/
+tmp/
+app/**/*.js
+app/**/*.js.map
+
+# dependencies
+node_modules/
+bower_components/
+
+
+# e2e
+e2e/*.js
+e2e/*.map
