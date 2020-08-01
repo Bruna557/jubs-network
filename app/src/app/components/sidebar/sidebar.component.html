@@ -1,4 +1,7 @@
 <div class="vertical-nav" id="sidebar">
+    <div class="logo text-center">
+        <img src="../assets/jubs-logo.png" width="150" alt="">
+    </div>
     <ul class="nav flex-column mb-0">
         <li class="nav-item">
             <a href="/feed" [ngClass]="{'active': this.router.url==='/feed'}" >Feed</a>
@@ -13,7 +16,4 @@
             <a href="/following" [ngClass]="{'active': this.router.url==='/following'}">Following</a>
         </li>
     </ul>
-    <!-- <div class="logo">
-        <img src="../assets/jubs-logo.png" width="150" alt="">
-    </div> -->
 </div>
