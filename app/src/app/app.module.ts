@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }    from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -17,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
+import { LoginService } from './services/login.service';
 
 
 @NgModule({
@@ -31,16 +33,17 @@ import { UserService } from './services/user.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpModule,
     MatIconModule,
     MatCardModule,
-
   ],
   providers: [
     UserService,
-    PostService
+    PostService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

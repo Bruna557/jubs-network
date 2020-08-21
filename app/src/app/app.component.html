@@ -5,14 +5,14 @@
     <div class="login-form">
         <form>
             <div class="form-group">
-            <label for="usernameInput">Username</label>
-            <input type="text" class="form-control" id="usernameInput">
+                <label for="username">Username:</label>
+                <input type="text" [(ngModel)]="user.username" class="form-control" required>
             </div>
             <div class="form-group">
-            <label for="passwordInput">Password</label>
-            <input type="password" class="form-control" id="passwordInput">
+                <label for="pwd">Password</label>
+                <input type="password" [(ngModel)]="user.password" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-dark" (click)="isLogged=true">Login</button>
+            <button type="submit" class="btn btn-dark" (click)="login">Login</button>
         </form>
     </div>
 </div>
