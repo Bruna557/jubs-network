@@ -2,10 +2,12 @@ package com.github.Bruna557.restapi.controller;
 
 import com.github.Bruna557.restapi.exception.ResourceNotFoundException;
 import com.github.Bruna557.restapi.model.User;
+import com.github.Bruna557.restapi.repository.UserRepository;
+import com.github.Bruna557.restapi.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.github.Bruna557.restapi.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -13,10 +15,20 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
+@AllArgsConstructor
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
+
+    @PostMapping("/login")
+    public String login(
+            @RequestParam("username") final String username,
+            @RequestParam("password") final String password)
+    {
+        return userService.login(username, password);
+    }
 
     /**
      * Get all users list.

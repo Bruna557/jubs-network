@@ -1,10 +1,10 @@
 package com.github.Bruna557.restapi.model;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +31,9 @@ public class User {
 
     @Column(name = "user_password", nullable = false)
     private String userPassword;
+
+    @Column(name = "user_token", nullable = true)
+    private String token;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -90,5 +93,13 @@ public class User {
 
     public void setPosts(Set<Post> posts) {
         this.posts = posts;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
