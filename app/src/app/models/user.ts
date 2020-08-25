@@ -5,6 +5,6 @@ export class User {
         public userDescription: string,
         public userPicture: string,
         public userEmail: string,
-        public userPassword: string
+        public userPassword: string = null
     ) {}
 }

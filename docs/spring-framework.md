@@ -50,14 +50,13 @@ Classes annotated with @Controller are the most popular elements in Spring MVC. 
 - Spring Data Neo4j
 - Spring for Apache Hadoop
 
-## Spring JPA vs Hibernate
+### Spring JPA vs Hibernate
 A JPA (Java Persistence API) is a specification of Java which is used to access, manage, and persist data between Java object and relational database. It is considered as a standard approach for Object Relational Mapping.
 
 Hibernate is a reference implementation of JPA. It is an open-source, lightweight, ORM tool. Spring Data JPA is a data access abstraction on top of JPA, and thus, it cannot work without a JPA provider.
 
 With Spring Data, you may use Hibernate, Eclipse Link, or any other JPA provider.
 
+## Spring Security
 
-## Sources
-[Wikipedia - Spring Framework](https://en.wikipedia.org/wiki/Spring_Framework#Modules)
-[Spring Documentation](https://spring.io/projects)
+

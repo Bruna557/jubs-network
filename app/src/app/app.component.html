@@ -1,29 +1,13 @@
-<div *ngIf="!isLogged">
-    <div class="logo">
-        <img src="../assets/jubs-logo.png" width="200" alt="">
+<div>
+    <div *ngIf="this.router.url!='/login'">
+        <div class="top-nav">
+            <navbar></navbar>
+        </div>
+        <div class="side-nav">
+            <sidebar></sidebar>
+        </div>
     </div>
-    <div class="login-form">
-        <form>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" [(ngModel)]="user.username" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Password</label>
-                <input type="password" [(ngModel)]="user.password" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-dark" (click)="login">Login</button>
-        </form>
-    </div>
-</div>
-<div *ngIf="isLogged">
-    <div class="top-nav">
-        <navbar></navbar>
-    </div>
-    <div class="side-nav">
-        <sidebar></sidebar>
-    </div>
-    <div class="page">
+    <div [ngClass]="{'page': this.router.url!='/login'}">
         <router-outlet></router-outlet>
     </div>
 </div>

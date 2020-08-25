@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { Post } from '../models/post';
+import { UserService } from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,7 @@ import { Post } from '../models/post';
 export class PostService {
     public url: string;
 
-    constructor(public _http: HttpClient) {
+    constructor(public _http: HttpClient, private userService: UserService) {
         this.url = GLOBAL.url;
     }
 
@@ -18,7 +19,7 @@ export class PostService {
         let params = JSON.stringify(post);
         let headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
-            .set('Authorization', localStorage.getToken());
+            .set('Authorization', this.userService.getToken());
 
         return this._http.post(this.url + 'posts', params, {headers: headers});
     }
@@ -26,7 +27,7 @@ export class PostService {
     getPosts(): Observable<any> {
         let headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
-            .set('Authorization', localStorage.getToken());
+            .set('Authorization', this.userService.getToken());
 
         return this._http.get(this.url + 'posts/', {headers: headers});
     }
