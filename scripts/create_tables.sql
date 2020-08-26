@@ -4,8 +4,8 @@ CREATE TABLE users(
     user_description VARCHAR(255) NOT NULL,
     user_picture VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
-    user_password VARCHAR(50) NOT null,
-    user_token VARCHAR(50)
+    user_password CHAR(60) NOT null,
+    user_token CHAR(36)
 );
 
 CREATE TABLE posts(

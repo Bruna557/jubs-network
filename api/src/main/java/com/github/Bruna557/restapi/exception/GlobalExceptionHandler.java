@@ -10,13 +10,7 @@ import java.util.Date;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    /**
-     * Resource not found com.github.Bruna557.api.exception response entity.
-     *
-     * @param ex the ex
-     * @param request the request
-     * @return the response entity
-     */
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundException(
             ResourceNotFoundException ex, WebRequest request) {
@@ -25,15 +19,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
-    /**
-     * Globle excpetion handler response entity.
-     *
-     * @param ex the ex
-     * @param request the request
-     * @return the response entity
-     */
+    @ExceptionHandler(UserAlreadyExistException.class)
+    public ResponseEntity<?> userAlreadyExistException(
+            UserAlreadyExistException ex, WebRequest request) {
+        ErrorResponse errorDetails =
+                new ErrorResponse(new Date(), HttpStatus.CONFLICT.toString(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public ResponseEntity<?> wrongPasswordException(
+            WrongPasswordException ex, WebRequest request) {
+        ErrorResponse errorDetails =
+                new ErrorResponse(new Date(), HttpStatus.UNAUTHORIZED.toString(), ex.getMessage(), request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
+    public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
         ErrorResponse errorDetails =
                 new ErrorResponse(new Date(), HttpStatus.INTERNAL_SERVER_ERROR.toString() ,ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);

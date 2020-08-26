@@ -1,13 +1,17 @@
 package com.github.Bruna557.restapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "posts")
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +19,7 @@ public class Post {
     private long postId;
 
     @Column(name = "post_date", nullable = false)
-    private Timestamp postDate;
+    private Date postDate = new Date();
 
     @Column(name = "post_text", nullable = false)
     private String postText;
@@ -23,9 +27,18 @@ public class Post {
     @Column(name = "post_votes")
     private long postVotes;
 
+    @Column(name = "user_id")
+    private long userId;
+
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
+
+    public Post(String postText, long userId) {
+        this.postText = postText;
+        this.userId = userId;
+    }
 
     public long getPostId() {
         return postId;
@@ -35,11 +48,11 @@ public class Post {
         this.postId = postId;
     }
 
-    public Timestamp getPostDate() {
+    public Date getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Timestamp postDate) {
+    public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
 
@@ -65,5 +78,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

@@ -28,7 +28,6 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
         token= StringUtils.removeStart(token, "Bearer").trim();
         Authentication requestAuthentication = new UsernamePasswordAuthenticationToken(token, token);
         return getAuthenticationManager().authenticate(requestAuthentication);
-
     }
 
     @Override
