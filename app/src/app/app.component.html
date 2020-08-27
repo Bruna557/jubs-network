@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div *ngIf="this.router.url!='/login'">
         <div class="top-nav">
             <navbar></navbar>
@@ -10,4 +10,32 @@
     <div [ngClass]="{'page': this.router.url!='/login'}">
         <router-outlet></router-outlet>
     </div>
+</div> -->
+<div *ngIf="this.router.url==='/login'; else logged">
+    <router-outlet></router-outlet>
 </div>
+<ng-template #logged>
+    <div class="container-fluid">   
+        
+        <div class="row top-nav">
+            <navbar></navbar>
+        </div>
+
+        <div class="row">
+            <div class="col-2" style="padding: 0">
+                <div class="position-fixed side-nav">
+                    <sidebar></sidebar>
+                </div>
+            </div>
+
+            <div class="col-8 page">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="col-2 left-bar">
+                
+            </div>
+        </div>
+
+    </div>   
+</ng-template>

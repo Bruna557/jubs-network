@@ -1,17 +1,14 @@
 .side-nav {
-    margin: 0;
-    padding: 0;
-    width: 200px;
+    margin: auto;
     background-color: #151515;
     height: 100vh;
-    position: fixed;
-    top: 54px;
-	left: 0;
+    width: 16.666667%;
 }
 
-.page {
-    margin-left: 200px;
-    margin-top: 60.5px;
-    padding: 1px 16px;
-    height: 1000px;
+.left-bar {
+    background-color: #151515;
+}
+
+.top-nav {
+    height: 54px;
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <div class="create-post">
         <mat-card class="card">
             <mat-card-header>
@@ -19,26 +19,48 @@
         </mat-card>
     </div>
     <div class="timeline">
-        <ul class="posts">
+        <ul style="padding: 0">
             <li *ngFor="let post of posts">
-                <div>
+                <div class="post">
                     <mat-card class="card">
                         <mat-card-header>
-                            <mat-card-title>
-                                <h5>{{this.username}}</h5>
-                            </mat-card-title>
                             <div mat-card-avatar class="example-header-image"></div>
-                            <mat-card-subtitle>
-                                <p></p>
-                            </mat-card-subtitle>
+                            <div style="width: 100%;">
+                                <mat-card-title>
+                                    <h5 style="font-size: 25px">
+                                        @{{this.username}}
+                                    </h5>                                
+                                </mat-card-title>                            
+                                <mat-card-subtitle>
+                                    <p style="font-size: 12px; color: grey">
+                                        {{post.postDate | date:'medium'}}
+                                    </p>
+                                </mat-card-subtitle>
+                            </div>
+                            <div style="width: 100%;">
+                                <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
                         </mat-card-header>
-                        <mat-card-content>
-                            <p>{{post.postText}}</p>
+                        <mat-card-content style="margin-bottom: 0px; margin-top: 10px">
+                            <div style="padding: 10px">
+                                <p>{{post.postText}}</p>
+                            </div>
                         </mat-card-content>
                         <mat-card-actions>
-                            <button type="button" class="btn btn-dark">
-                                {{post.postVotes}}
-                                <mat-icon aria-hidden="false" aria-label="like icon">thumb_up_alt</mat-icon>
+                            <button type="button" class="btn btn-dark" (click)="like(post.postId)">
+                                <div class="row">
+                                    <div class=col style="padding-right: 5px">
+                                        {{post.postVotes}}
+                                    </div>
+                                    <div class=col style="padding-left: 0px">
+                                        <mat-icon aria-hidden="false" aria-label="like icon">thumb_up_alt</mat-icon>
+                                    </div>
+                                </div>        
                             </button>
                         </mat-card-actions>
                     </mat-card>

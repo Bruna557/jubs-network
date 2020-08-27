@@ -41,6 +41,5 @@ export class UserService {
     }
 
     return this.token;
-}
-
+  }
 }

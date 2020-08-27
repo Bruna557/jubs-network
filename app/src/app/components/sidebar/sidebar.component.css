@@ -18,10 +18,6 @@
     color: white;
 }
 
-/* .logo {
-    width: 400px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 50%);
-} */
+.logo {
+    padding-bottom: 20px;
+}

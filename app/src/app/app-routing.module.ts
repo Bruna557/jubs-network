@@ -8,7 +8,8 @@ import { FollowingComponent } from './components/following/following.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
   { path: 'feed', component: FeedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'following', component: FollowingComponent },

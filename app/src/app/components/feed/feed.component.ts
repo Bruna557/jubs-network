@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
-import { UserService } from '../../services/user.service';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'feed',
@@ -15,9 +13,7 @@ export class FeedComponent {
   userId: string;
   username: string;
 
-  constructor(private postService: PostService, private userService: UserService) {
-    
-  }
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('identity');
@@ -31,8 +27,23 @@ export class FeedComponent {
   }
 
   post(): void {
-    console.log("new post: " + this.newPost)
     this.postService.createPost(this.userId, this.newPost)
-      .subscribe(response => console.log(response));
+      .subscribe( response => {
+        if (response) {
+          this.getPosts();
+        } else {
+          alert("Could not post :/");
+        }
+      });
+  }
+
+  like(postId: string) {
+    this.postService.likePost(this.userId, postId)
+      .subscribe(response => this.getPosts());
+  }
+
+  delete(postId: string) {
+    this.postService.deletePost(this.userId, postId)
+      .subscribe(response => this.getPosts());
   }
 }
