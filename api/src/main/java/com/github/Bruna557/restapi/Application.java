@@ -9,11 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class Application {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -23,8 +18,9 @@ public class Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins(
-                        "http://localhost:8080", "http://localhost:4200");
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowCredentials(true);
             }
         };
     }

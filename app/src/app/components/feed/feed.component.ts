@@ -11,25 +11,28 @@ import { User } from 'src/app/models/user';
 })
 export class FeedComponent {
   posts: Post[];
-  newPost: Post;
-  user: User;
+  newPost: string;
+  userId: string;
+  username: string;
 
   constructor(private postService: PostService, private userService: UserService) {
     
   }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('identity');
+    this.username = localStorage.getItem('username');
     this.getPosts();
-    this.userService.getUser(1).subscribe(user => this.user = user);
   }
 
   getPosts(): void {
-    this.postService.getPosts()
+    this.postService.getPosts(this.userId)
       .subscribe(posts => this.posts = posts)
   }
 
   post(): void {
-    console.log("new post: " + this.newPost.postText)
-    this.postService.createPost(userId)
+    console.log("new post: " + this.newPost)
+    this.postService.createPost(this.userId, this.newPost)
+      .subscribe(response => console.log(response));
   }
 }

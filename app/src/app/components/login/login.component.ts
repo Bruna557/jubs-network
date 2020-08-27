@@ -20,11 +20,15 @@ export class LoginComponent {
         this.userService.login(this.username, this.password)
           .subscribe(response => {
             if (response) {
-                localStorage.setItem('token', response);                
-                localStorage.setItem('identity', this.username);
-                console.log('user: ' + this.username);
-                console.log('token: ' + response);
-                this.router.navigate(['/feed']);
+                localStorage.setItem('token', response);
+                this.userService.getUserId(this.username)
+                  .subscribe(response => {
+                    localStorage.setItem('identity', response);
+                    localStorage.setItem('username', this.username);
+                    console.log('user id: ' + localStorage.getItem('identity'));
+                    console.log('token: ' + localStorage.getItem('token'));
+                  })
+              this.router.navigate(['/feed']);
             } else {
                 alert("Authentication failed.");
             }
