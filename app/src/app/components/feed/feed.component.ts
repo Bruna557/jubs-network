@@ -22,12 +22,12 @@ export class FeedComponent {
   }
 
   getPosts(): void {
-    this.postService.getPosts(this.userId)
+    this.postService.getPosts()
       .subscribe(posts => this.posts = posts)
   }
 
   post(): void {
-    this.postService.createPost(this.userId, this.newPost)
+    this.postService.createPost(this.newPost)
       .subscribe( response => {
         if (response) {
           this.getPosts();
@@ -35,15 +35,16 @@ export class FeedComponent {
           alert("Could not post :/");
         }
       });
+    this.newPost = null;
   }
 
   like(postId: string) {
-    this.postService.likePost(this.userId, postId)
+    this.postService.likePost(postId)
       .subscribe(response => this.getPosts());
   }
 
   delete(postId: string) {
-    this.postService.deletePost(this.userId, postId)
+    this.postService.deletePost(postId)
       .subscribe(response => this.getPosts());
   }
 }

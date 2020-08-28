@@ -11,39 +11,40 @@ export class PostService {
     public url: string;
 
     constructor(public _http: HttpClient, private userService: UserService) {
-        this.url = GLOBAL.url;
+        let userId = parseInt(localStorage.getItem('identity'));
+        this.url = GLOBAL.url + 'user/' + userId;
     }
 
-    createPost(userId: string, post: string): Observable<any> {
+    createPost(post: string): Observable<any> {
         let headers = new HttpHeaders()
             .set('Content-Type', 'application/json')
             .set('Authorization', this.userService.getToken());
 
-        return this._http.post(this.url + 'user/' + userId + '/post', post, {headers: headers});
+        return this._http.post(this.url + '/post', post, {headers: headers});
     }
 
-    getPosts(userId: string): Observable<any> {
+    getPosts(): Observable<any> {
         let headers = new HttpHeaders()
             .set('Authorization', this.userService.getToken());
 
-        return this._http.get(this.url + 'user/' + userId + '/feed', {headers: headers});
+        return this._http.get(this.url + '/feed', {headers: headers});
     }
 
-    likePost(userId: string, postId: string): Observable<any> {
-        let headers = new HttpHeaders()
-            .set('Authorization', this.userService.getToken());
-        let params = new HttpParams()
-            .append('postId', postId);
-
-        return this._http.put(this.url + 'user/' + userId + '/feed', {}, {headers: headers, params: params});
-    }
-
-    deletePost(userId: string, postId: string) {
+    likePost(postId: string): Observable<any> {
         let headers = new HttpHeaders()
             .set('Authorization', this.userService.getToken());
         let params = new HttpParams()
             .append('postId', postId);
 
-        return this._http.delete(this.url + 'user/' + userId + '/post', {headers: headers, params: params});
+        return this._http.put(this.url + '/feed', {}, {headers: headers, params: params});
+    }
+
+    deletePost(postId: string) {
+        let headers = new HttpHeaders()
+            .set('Authorization', this.userService.getToken());
+        let params = new HttpParams()
+            .append('postId', postId);
+
+        return this._http.delete(this.url + '/post', {headers: headers, params: params});
     }
 }

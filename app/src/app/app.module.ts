@@ -19,6 +19,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UserService } from './services/user.service';
     FeedComponent,
     FollowersComponent,
     FollowingComponent,
-    ProfileComponent
+    ProfileComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,10 @@
     padding: 30px;
 }
 
+.input-lg {
+    margin-top: 15px !important;
+}
+
 .post {
     padding: 15px;
     margin: 0;

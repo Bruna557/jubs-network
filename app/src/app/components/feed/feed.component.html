@@ -3,12 +3,14 @@
         <mat-card class="card">
             <mat-card-header>
                 <mat-card-title>
-                    <h5>Doge</h5>
+                    <h5 style="font-size: 25px">
+                        @{{username}}
+                    </h5>   
                 </mat-card-title>
-                <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-subtitle>
-                    <p>@thegoodestboy</p>
+                    <p></p>
                 </mat-card-subtitle>
+                <div mat-card-avatar class="example-header-image"></div>
             </mat-card-header>
             <mat-card-content>
                 <input class="form-control input-lg" type="text" [(ngModel)]="newPost" placeholder="What's on your mind?">
@@ -28,7 +30,7 @@
                             <div style="width: 100%;">
                                 <mat-card-title>
                                     <h5 style="font-size: 25px">
-                                        @{{this.username}}
+                                        @{{username}}
                                     </h5>                                
                                 </mat-card-title>                            
                                 <mat-card-subtitle>
@@ -39,11 +41,11 @@
                             </div>
                             <div style="width: 100%;">
                                 <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
                                     <mat-icon>delete</mat-icon>
                                 </button>
+                                <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
+                                    <mat-icon>edit</mat-icon>
+                                </button>                                
                             </div>
                         </mat-card-header>
                         <mat-card-content style="margin-bottom: 0px; margin-top: 10px">

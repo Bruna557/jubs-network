@@ -7,6 +7,16 @@
 
 .left-bar {
     background-color: #151515;
+    height: 100%;
+    width: 100%;
+}
+
+.page {
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #151515;
+    background-color: white;
+    height: 100%;
 }
 
 .top-nav {

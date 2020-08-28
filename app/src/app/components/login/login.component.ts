@@ -17,21 +17,22 @@ export class LoginComponent {
     }
 
     login() {
-        this.userService.login(this.username, this.password)
-          .subscribe(response => {
-            if (response) {
-                localStorage.setItem('token', response);
-                this.userService.getUserId(this.username)
-                  .subscribe(response => {
-                    localStorage.setItem('identity', response);
-                    localStorage.setItem('username', this.username);
-                    console.log('user id: ' + localStorage.getItem('identity'));
-                    console.log('token: ' + localStorage.getItem('token'));
-                  })
-              this.router.navigate(['/feed']);
-            } else {
-                alert("Authentication failed.");
-            }
-        });
-      }
+      console.log("username: " + this.username);
+      this.userService.login(this.username, this.password)
+        .subscribe(response => {
+          if (response) {
+              localStorage.setItem('token', response);
+              this.userService.getUserId(this.username)
+                .subscribe(response => {
+                  localStorage.setItem('identity', response);
+                  localStorage.setItem('username', this.username);
+                  console.log('user id: ' + localStorage.getItem('identity'));
+                  console.log('token: ' + localStorage.getItem('token'));
+                })
+            this.router.navigate(['/feed']);
+          } else {
+              alert("Authentication failed.");
+          }
+      });
+    }
 }
