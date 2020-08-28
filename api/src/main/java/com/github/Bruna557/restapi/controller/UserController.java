@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,13 +32,18 @@ public class UserController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("/user/{id}")
-    public ResponseEntity<String> getUsernameById(@PathVariable(value = "id") Long userId)
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId)
             throws ResourceNotFoundException {
         User user =
                 userRepository
                         .findById(userId)
                         .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
-        return ResponseEntity.ok().body(user.getUsername());
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/user/search")
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok().body(userRepository.findAll());
     }
 
     @PreAuthorize("#userId == authentication.principal.userId")
