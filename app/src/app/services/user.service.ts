@@ -15,6 +15,22 @@ export class UserService {
     this.url = GLOBAL.url;
   }
 
+  followUser(followeId: number): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.post(this.url + 'user/' + userId + '/follow/' + followeId, {}, {headers: headers});
+  }
+
+  getFollowed(): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.get(this.url + 'user/' + userId + '/follow', {headers: headers});
+  }
+
   login(username: string, password: string): Observable<any> {
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
@@ -40,10 +56,13 @@ export class UserService {
     return this._http.get(this.url + 'user', {headers: headers, params: params, responseType: 'text'});
   }
 
-  getUser(): Observable<any> {
+  getUser(userId: number = null): Observable<any> {
     let headers = new HttpHeaders()
       .set('Authorization', this.getToken());
-    let userId = parseInt(localStorage.getItem('identity'));
+
+    if(userId == null) {
+      userId = parseInt(localStorage.getItem('identity'));
+    }
 
     return this._http.get(this.url + 'user/' + userId, {headers: headers});
   }
@@ -56,11 +75,38 @@ export class UserService {
     return this._http.delete(this.url + 'user/' + userId, {headers: headers});
   }
 
-  search(): Observable<any> {
+  changeDescription(description: string): Observable<any> {
     let headers = new HttpHeaders()
       .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
 
-    return this._http.get(this.url + 'user/search', {headers: headers});
+    return this._http.put(this.url + 'user/' + userId + '/change-description', description, {headers: headers});
+  }
+
+  changePicture(picture: string): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.put(this.url + 'user/' + userId + '/change-picture', picture, {headers: headers});
+  }
+
+  changePassword(password: string): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.put(this.url + 'user/' + userId + '/change-password', password, {headers: headers});
+  }
+
+  search(text: string): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+    let params = new HttpParams()
+      .append('username', text);
+
+    return this._http.get(this.url + 'user/' + userId +'/search', {headers: headers, params: params});
   }
 
   getToken() {

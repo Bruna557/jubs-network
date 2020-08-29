@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'feed',
@@ -11,14 +13,21 @@ export class FeedComponent {
   posts: Post[];
   newPost: string;
   userId: string;
-  username: string;
+  user: User = new User(null, null, null, null);
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('identity');
-    this.username = localStorage.getItem('username');
+    this.getUser();
     this.getPosts();
+  }
+
+  getUser(): void {
+    this.userService.getUser()
+      .subscribe(response => {
+        this.user = response;
+      });
   }
 
   getPosts(): void {

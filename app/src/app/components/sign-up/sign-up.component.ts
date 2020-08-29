@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,15 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent {
 
-  username: string;
-  email: string;
-  description: string;
-  picture: string;
-  password: string;
+  user: User = new User(null, null, null, null);
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   register(): void {
+    this.userService.registerUser(this.user)
+        .subscribe(response => {
+          this.router.navigate(['/login']);
+        });
   }
-
 }

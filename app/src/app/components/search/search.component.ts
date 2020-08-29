@@ -15,8 +15,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchText = localStorage.getItem('search');
-    this.userService.search()
+    this.userService.search(this.searchText)
       .subscribe(response => this.users = response);
+  }
+
+  follow(id: number) {
+    this.userService.followUser(id)
+      .subscribe(response => {});
   }
 
 }

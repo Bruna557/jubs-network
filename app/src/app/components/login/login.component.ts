@@ -17,7 +17,6 @@ export class LoginComponent {
     }
 
     login() {
-      console.log("username: " + this.username);
       this.userService.login(this.username, this.password)
         .subscribe(response => {
           if (response) {

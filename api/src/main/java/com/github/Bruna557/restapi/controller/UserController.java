@@ -30,7 +30,6 @@ public class UserController {
         return ResponseEntity.ok().body(user.getUserId());
     }
 
-    @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId)
             throws ResourceNotFoundException {
@@ -41,9 +40,11 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @GetMapping("/user/search")
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok().body(userRepository.findAll());
+    @PreAuthorize("#userId == authentication.principal.userId")
+    @GetMapping("/user/{id}/search")
+    public ResponseEntity<List<User>> searchUser(
+            @PathVariable(value = "id") Long userId, @RequestParam String username) {
+        return ResponseEntity.ok().body(userRepository.search(username, userId));
     }
 
     @PreAuthorize("#userId == authentication.principal.userId")

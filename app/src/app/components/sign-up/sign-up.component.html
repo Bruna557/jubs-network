@@ -6,27 +6,27 @@
                 <form class="form-signin" #f="ngForm" (ngSubmit)="register()" novalidate>
                     <div class="form-label-group">
                         <label for="inputUsername">Username</label>
-                        <input type="email" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" class="form-control" required autofocus>
+                        <input type="email" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" class="form-control" required autofocus>
                     </div>
 
                     <div class="form-label-group">
                         <label for="inputUsername">Email</label>
-                        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" required autofocus>
+                        <input type="email" [(ngModel)]="user.userEmail" [ngModelOptions]="{standalone: true}" class="form-control" required autofocus>
                     </div>
 
                     <div class="form-label-group">
                         <label for="inputPassword">Description</label>
-                        <input type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control" required>
+                        <input type="text" [(ngModel)]="user.userDescription" [ngModelOptions]="{standalone: true}" class="form-control" required>
                     </div>
 
                     <div class="form-label-group">
                         <label for="inputPassword">Profile picture</label>
-                        <input type="text" [(ngModel)]="picture" [ngModelOptions]="{standalone: true}" class="form-control" required>
+                        <input type="text" [(ngModel)]="user.userPicture" [ngModelOptions]="{standalone: true}" class="form-control" required>
                     </div>
     
                     <div class="form-label-group">
                         <label for="inputPassword">Password</label>
-                        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control" required>
+                        <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" class="form-control" required>
                     </div>
 
                     <button class="btn btn-lg btn-dark btn-block" type="submit">

@@ -1,2 +1,30 @@
-
-    <h1>Following</h1>
+<div>
+    <ul style="padding: 0">
+        <li *ngFor="let user of users" class="user-list">
+            <mat-card class="card">
+                <mat-card-header>
+                    <div mat-card-avatar style="background-image: url('{{user.userPicture}}');background-size: cover;"></div>
+                    <div style="width: 100%;">
+                        <mat-card-title>
+                            <h5 style="font-size: 25px">
+                                @{{user.username}}
+                            </h5>                                
+                        </mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content style="margin-bottom: 0px; margin-top: 10px">
+                    <div style="padding: 10px">
+                        <p>{{user.userDescription}}</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button type="button" class="btn btn-dark" (click)="unfollow(user.userId)">
+                        <div class="">
+                            Unfollow
+                        </div>        
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </li>
+    </ul>
+</div>

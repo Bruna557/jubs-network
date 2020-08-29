@@ -1,2 +1,30 @@
-
-    <h1>Profile</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div style="margin: auto; padding:20px">
+            <img class="profile-picture text-center" src="{{user.userPicture}}">
+            <h1 class="text-center" style="margin-top: 8px;">@{{user.username}}</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <h4 style="margin: auto">{{user.userDescription}}</h4>
+    </div>
+    <hr>
+    <div class="row actions">
+        <button type="button" class="btn btn-dark" (click)="change='description'">Change Description</button>
+        <button type="button" class="btn btn-dark" (click)="change='picture'">Change Picture</button>
+        <button type="button" class="btn btn-dark" (click)="change='password'">Change Password</button>
+        <button type="button" class="btn btn-dark" (click)="delete()">Delete Account</button>
+    </div>
+    <div *ngIf="change!=null" class="row">
+        <div class="form">
+            <div style="margin: 10px">New {{change}}</div>
+            <div style="margin: 10px">
+                <input type="text" [(ngModel)]="newValue" [ngModelOptions]="{standalone: true}" class="form-control" required autofocus>
+            </div>
+            <div class="btn">
+                <button type="button" class="btn btn-dark" (click)="edit()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

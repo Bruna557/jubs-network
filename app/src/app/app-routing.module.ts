@@ -7,6 +7,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { FollowersComponent } from './components/followers/followers.component';
 import { FollowingComponent } from './components/following/following.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'following', component: FollowingComponent },
-  { path: 'followers', component: FollowersComponent }
+  { path: 'followers', component: FollowersComponent },
+  { path: 'search', component: SearchComponent }
 ];
 
 @NgModule({

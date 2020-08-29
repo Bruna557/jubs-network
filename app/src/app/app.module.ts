@@ -20,6 +20,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     FollowersComponent,
     FollowingComponent,
     ProfileComponent,
-    SignUpComponent
+    SignUpComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
