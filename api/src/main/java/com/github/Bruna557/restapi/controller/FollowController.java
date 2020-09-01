@@ -1,14 +1,13 @@
 package com.github.Bruna557.restapi.controller;
 
-import com.github.Bruna557.restapi.repository.FollowRepository;
+import com.github.Bruna557.restapi.exception.ResourceNotFoundException;
 import com.github.Bruna557.restapi.model.Follow;
+import com.github.Bruna557.restapi.model.User;
+import com.github.Bruna557.restapi.repository.FollowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,8 +25,28 @@ public class FollowController {
     }
 
     @PreAuthorize("#userId == authentication.principal.userId")
-    @GetMapping("user/{userId}/follow")
-    ResponseEntity<List<Follow>> getFollowed(@PathVariable(value = "userId") Long userId) {
+    @DeleteMapping("user/{userId}/unfollow/{followedId}")
+    ResponseEntity<Boolean> unfollow(
+            @PathVariable(value = "userId") Long userId,
+            @PathVariable(value = "followedId") Long followedId) throws ResourceNotFoundException {
+        Follow follow =
+                followRepository
+                        .findByFollowerIdAndFollowedId(userId, followedId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Following not found"));
+
+        followRepository.delete(follow);
+        return ResponseEntity.ok(true);
+    }
+
+    @PreAuthorize("#userId == authentication.principal.userId")
+    @GetMapping("user/{userId}/followed")
+    ResponseEntity<List<User>> getFollowed(@PathVariable(value = "userId") Long userId) {
         return ResponseEntity.ok(followRepository.findFollowed(userId));
+    }
+
+    @PreAuthorize("#userId == authentication.principal.userId")
+    @GetMapping("user/{userId}/followers")
+    ResponseEntity<List<User>> getFollowers(@PathVariable(value = "userId") Long userId) {
+        return ResponseEntity.ok(followRepository.findFollowers(userId));
     }
 }

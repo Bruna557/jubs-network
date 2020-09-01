@@ -30,8 +30,7 @@ public class Post {
     @Column(name = "user_id")
     private long userId;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 

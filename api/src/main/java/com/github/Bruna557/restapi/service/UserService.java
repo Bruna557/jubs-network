@@ -45,6 +45,15 @@ public class UserService {
         throw new ResourceNotFoundException("User not found: " + username);
     }
 
+    public User changePassword(Long userId, String password) throws ResourceNotFoundException {
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            user.get().setPassword(passwordEncoder.encode(password));
+            return userRepository.save(user.get());
+        }
+        throw new ResourceNotFoundException("User not found: id" + userId);
+    }
+
     public Optional<User> findByToken(String token) {
         return userRepository.findByToken(token);
     }

@@ -13,8 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -46,5 +44,20 @@ public class AccountController {
         user.setToken(null);
         final User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @PreAuthorize("#userId == authentication.principal.userId")
+    @PutMapping("/user/{id}/change-password")
+    public ResponseEntity<User> updatePassword(
+            @PathVariable(value = "id") Long userId, @Valid @RequestBody String newPassword)
+            throws ResourceNotFoundException {
+        User user =
+                userRepository
+                        .findById(userId)
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
+
+        user.setPassword(newPassword);
+        final User updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(userService.changePassword(userId, newPassword));
     }
 }

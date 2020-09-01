@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,6 +23,7 @@ public class PostController {
         return postRepository.save(post);
     }
 
+    @PreAuthorize("#userId == authentication.principal.userId")
     @PutMapping("/user/{userId}/post")
     public ResponseEntity<Post> updatePost(
             @RequestParam Long postId, @RequestBody String postText)
@@ -40,6 +39,7 @@ public class PostController {
         return ResponseEntity.ok(updatedPost);
     }
 
+    @PreAuthorize("#userId == authentication.principal.userId")
     @DeleteMapping("/user/{userId}/post")
     public Map<String, Boolean> deletePost(@RequestParam Long postId) throws Exception {
         Post post =

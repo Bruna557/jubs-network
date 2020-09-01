@@ -10,8 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query(value = "SELECT u FROM User u WHERE u.username = ?1 and u.password = ?2")
-    Optional<User> login(String username, String password);
 
     @Query(value = "SELECT u FROM User u WHERE u.username LIKE %?1% and u.userId != ?2")
     List<User> search(String username, Long userId);

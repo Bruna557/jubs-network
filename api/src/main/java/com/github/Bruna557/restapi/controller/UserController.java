@@ -48,21 +48,6 @@ public class UserController {
     }
 
     @PreAuthorize("#userId == authentication.principal.userId")
-    @PutMapping("/user/{id}/change-password")
-    public ResponseEntity<User> updatePassword(
-            @PathVariable(value = "id") Long userId, @Valid @RequestBody String newPassword)
-            throws ResourceNotFoundException {
-        User user =
-                userRepository
-                        .findById(userId)
-                        .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
-
-        user.setPassword(newPassword);
-        final User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    @PreAuthorize("#userId == authentication.principal.userId")
     @PutMapping("/user/{id}/change-picture")
     public ResponseEntity<User> updateImage(
             @PathVariable(value = "id") Long userId, @Valid @RequestBody String newPicture)

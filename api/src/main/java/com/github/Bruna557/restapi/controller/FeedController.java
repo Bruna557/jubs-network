@@ -15,8 +15,8 @@ public class FeedController {
     private PostRepository postRepository;
 
     @GetMapping("/user/{userId}/feed")
-    public List<Post> getPosts(@PathVariable(value = "userId") Long userId) {
-        return postRepository.findUserPosts(userId);
+    public ResponseEntity<List<Post>> getPosts(@PathVariable(value = "userId") Long userId) {
+        return ResponseEntity.ok(postRepository.findFeedPosts(userId));
     }
 
     @PutMapping("/user/{userId}/feed")

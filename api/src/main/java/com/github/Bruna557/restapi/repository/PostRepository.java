@@ -13,4 +13,9 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "SELECT p FROM Post p WHERE p.userId = ?1")
     List<Post> findUserPosts(Long userId);
+
+    @Query(value = "select p from Post p left join Follow f on p.userId = f.followedId "
+            + "where f.followerId = ?1 or p.userId = ?1 " +
+            "order by p.postDate")
+    List<Post> findFeedPosts(Long userId);
 }
