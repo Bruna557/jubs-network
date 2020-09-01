@@ -13,7 +13,6 @@ export class NavbarComponent {
 
   search() {    
     localStorage.setItem('search', this.searchText);
-    location.reload();
     this.router.navigate(['/search']);
   }
 }

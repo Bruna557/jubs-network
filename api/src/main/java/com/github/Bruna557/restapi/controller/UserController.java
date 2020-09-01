@@ -3,22 +3,18 @@ package com.github.Bruna557.restapi.controller;
 import com.github.Bruna557.restapi.exception.ResourceNotFoundException;
 import com.github.Bruna557.restapi.model.User;
 import com.github.Bruna557.restapi.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@AllArgsConstructor
 public class UserController {
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/user")
     public ResponseEntity<Long> getUserId(@RequestParam String username)
@@ -79,15 +75,13 @@ public class UserController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @DeleteMapping("/user/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws Exception {
+    public ResponseEntity<Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws Exception {
         User user =
                 userRepository
                         .findById(userId)
                         .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
 
         userRepository.delete(user);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return ResponseEntity.ok(true);
     }
 }

@@ -18,7 +18,7 @@ public class FollowController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @PostMapping("user/{userId}/follow/{followedId}")
-    ResponseEntity<Follow> follow(
+    public ResponseEntity<Follow> follow(
             @PathVariable(value = "userId") Long userId,
             @PathVariable(value = "followedId") Long followedId) {
         return ResponseEntity.ok(followRepository.save(new Follow(userId, followedId)));
@@ -26,7 +26,7 @@ public class FollowController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @DeleteMapping("user/{userId}/unfollow/{followedId}")
-    ResponseEntity<Boolean> unfollow(
+    public ResponseEntity<Boolean> unfollow(
             @PathVariable(value = "userId") Long userId,
             @PathVariable(value = "followedId") Long followedId) throws ResourceNotFoundException {
         Follow follow =
@@ -40,13 +40,13 @@ public class FollowController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("user/{userId}/followed")
-    ResponseEntity<List<User>> getFollowed(@PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<List<User>> getFollowed(@PathVariable(value = "userId") Long userId) {
         return ResponseEntity.ok(followRepository.findFollowed(userId));
     }
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @GetMapping("user/{userId}/followers")
-    ResponseEntity<List<User>> getFollowers(@PathVariable(value = "userId") Long userId) {
+    public ResponseEntity<List<User>> getFollowers(@PathVariable(value = "userId") Long userId) {
         return ResponseEntity.ok(followRepository.findFollowers(userId));
     }
 }

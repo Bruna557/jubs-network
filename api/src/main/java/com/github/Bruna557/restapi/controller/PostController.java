@@ -4,12 +4,10 @@ import com.github.Bruna557.restapi.exception.ResourceNotFoundException;
 import com.github.Bruna557.restapi.model.Post;
 import com.github.Bruna557.restapi.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class PostController {
@@ -41,15 +39,16 @@ public class PostController {
 
     @PreAuthorize("#userId == authentication.principal.userId")
     @DeleteMapping("/user/{userId}/post")
-    public Map<String, Boolean> deletePost(@RequestParam Long postId) throws Exception {
+    public ResponseEntity<HttpStatus> deletePost(
+            @PathVariable(value = "userId") Long userId, @RequestParam Long postId) throws Exception {
         Post post =
                 postRepository
                         .findById(postId)
                         .orElseThrow(() -> new ResourceNotFoundException("Post not found on :: " + postId));
 
+        if(post.getUserId() != userId)
+            return ResponseEntity.ok(HttpStatus.UNAUTHORIZED);
         postRepository.delete(post);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
