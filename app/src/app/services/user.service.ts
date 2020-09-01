@@ -23,12 +23,28 @@ export class UserService {
     return this._http.post(this.url + 'user/' + userId + '/follow/' + followeId, {}, {headers: headers});
   }
 
+  unfollowUser(followeId: number): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.delete(this.url + 'user/' + userId + '/unfollow/' + followeId, {headers: headers});
+  }
+
   getFollowed(): Observable<any> {
     let headers = new HttpHeaders()
       .set('Authorization', this.getToken());
     let userId = parseInt(localStorage.getItem('identity'));
 
-    return this._http.get(this.url + 'user/' + userId + '/follow', {headers: headers});
+    return this._http.get(this.url + 'user/' + userId + '/followed', {headers: headers});
+  }
+
+  getFollowers(): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.get(this.url + 'user/' + userId + '/followers', {headers: headers});
   }
 
   login(username: string, password: string): Observable<any> {
@@ -37,6 +53,14 @@ export class UserService {
     let data = 'username=' + username + '&password=' + password;
 
     return this._http.post(this.url + 'login', data, {headers, responseType: 'text'});
+  }
+
+  logout(): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', this.getToken());
+    let userId = parseInt(localStorage.getItem('identity'));
+
+    return this._http.post(this.url + 'logout/' + userId, {}, {headers, responseType: 'text'});
   }
 
   registerUser(user: User) {

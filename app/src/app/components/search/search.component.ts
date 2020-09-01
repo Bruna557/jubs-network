@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   follow(id: number) {
     this.userService.followUser(id)
-      .subscribe(response => {});
+      .subscribe();
   }
 
 }

@@ -27,8 +27,8 @@ export class LoginComponent {
                   localStorage.setItem('username', this.username);
                   console.log('user id: ' + localStorage.getItem('identity'));
                   console.log('token: ' + localStorage.getItem('token'));
-                })
-            this.router.navigate(['/feed']);
+                  this.router.navigate(['/feed']);
+                });            
           } else {
               alert("Authentication failed.");
           }

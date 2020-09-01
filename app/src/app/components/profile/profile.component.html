@@ -1,8 +1,15 @@
 <div class="container-fluid">
     <div class="row">
         <div style="margin: auto; padding:20px">
-            <img class="profile-picture text-center" src="{{user.userPicture}}">
-            <h1 class="text-center" style="margin-top: 8px;">@{{user.username}}</h1>
+            <div class="row" style="justify-content: center;">
+                <img class="profile-picture" src="{{user.userPicture}}">
+            </div>
+            <div class="row" style="justify-content: center;">
+                <h1 style="margin-top: 8px;">@{{user.username}}</h1>
+            </div>
+            <div class="row" style="justify-content: center;">
+                <p style="margin-top: 8px;">@{{user.userEmail}}</p>
+            </div>
         </div>
     </div>
     <hr>
@@ -14,7 +21,7 @@
         <button type="button" class="btn btn-dark" (click)="change='description'">Change Description</button>
         <button type="button" class="btn btn-dark" (click)="change='picture'">Change Picture</button>
         <button type="button" class="btn btn-dark" (click)="change='password'">Change Password</button>
-        <button type="button" class="btn btn-dark" (click)="delete()">Delete Account</button>
+        <button type="button" class="btn btn-danger" (click)="delete()">Delete Account</button>
     </div>
     <div *ngIf="change!=null" class="row">
         <div class="form">

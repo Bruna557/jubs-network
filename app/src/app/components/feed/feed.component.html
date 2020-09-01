@@ -26,11 +26,11 @@
                 <div class="post">
                     <mat-card class="card">
                         <mat-card-header>
-                            <div mat-card-avatar style="background-image: url('{{user.userPicture}}');background-size: cover;"></div>
+                            <div mat-card-avatar style="background-image: url('{{post.user.userPicture}}');background-size: cover;"></div>
                             <div style="width: 100%;">
                                 <mat-card-title>
                                     <h5 style="font-size: 25px">
-                                        @{{user.username}}
+                                        @{{post.user.username}}
                                     </h5>                                
                                 </mat-card-title>                            
                                 <mat-card-subtitle>
@@ -42,10 +42,7 @@
                             <div style="width: 100%;">
                                 <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
                                     <mat-icon>delete</mat-icon>
-                                </button>
-                                <button type="button" class="btn btn-dark" (click)="delete(post.postId)" style="float: right;">
-                                    <mat-icon>edit</mat-icon>
-                                </button>                                
+                                </button>                               
                             </div>
                         </mat-card-header>
                         <mat-card-content style="margin-bottom: 0px; margin-top: 10px">

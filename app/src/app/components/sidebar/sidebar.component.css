@@ -1,5 +1,5 @@
 /* Sidebar links */
-.vertical-nav a {
+.vertical-nav a, .logout {
     display: block;
     color: grey;
     padding: 16px;
@@ -13,9 +13,10 @@
 }
 
 /* Links on mouse-over */
-.vertical-nav a:hover:not(.active) {
+.vertical-nav a:hover:not(.active), .logout:hover:not(.active) {
     background-color: #555;
     color: white;
+    cursor: pointer;
 }
 
 .logo {

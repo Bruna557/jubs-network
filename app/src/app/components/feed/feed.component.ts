@@ -11,14 +11,13 @@ import { UserService } from '../../services/user.service';
 })
 export class FeedComponent {
   posts: Post[];
+  postOwner: User = new User(null, null, null, null);
   newPost: string;
-  userId: string;
   user: User = new User(null, null, null, null);
 
   constructor(private postService: PostService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('identity');
     this.getUser();
     this.getPosts();
   }
@@ -32,7 +31,7 @@ export class FeedComponent {
 
   getPosts(): void {
     this.postService.getPosts()
-      .subscribe(posts => this.posts = posts)
+      .subscribe(posts => this.posts = posts);
   }
 
   post(): void {
@@ -49,11 +48,11 @@ export class FeedComponent {
 
   like(postId: string) {
     this.postService.likePost(postId)
-      .subscribe(response => this.getPosts());
+      .subscribe(() => this.getPosts());
   }
 
   delete(postId: string) {
     this.postService.deletePost(postId)
-      .subscribe(response => this.getPosts());
+      .subscribe(() => this.getPosts());
   }
 }

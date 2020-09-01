@@ -4,16 +4,44 @@
     </div>
     <ul class="nav flex-column mb-0">
         <li class="nav-item">
-            <a href="/feed" [ngClass]="{'active': this.router.url==='/feed'}" >Feed</a>
+            <a href="/feed" [ngClass]="{'active': this.router.url==='/feed'}">
+                <div class="row" style="margin-left: 5px">
+                    <mat-icon aria-hidden="false" aria-label="like icon">home</mat-icon>
+                    <p style="margin-left: 15px">Feed</p>
+                </div>
+            </a>
         </li>
         <li class="nav-item">
-            <a href="/profile" [ngClass]="{'active': this.router.url==='/profile'}" >MyProfile</a>
+            <a href="/profile" [ngClass]="{'active': this.router.url==='/profile'}" >
+                <div class="row" style="margin-left: 5px">
+                    <mat-icon aria-hidden="false" aria-label="like icon">settings</mat-icon>
+                    <p style="margin-left: 15px">Account</p>
+                </div>
+            </a>
         </li>
         <li class="nav-item">
-            <a href="/followers" [ngClass]="{'active': this.router.url==='/followers'}">Followers</a>
+            <a href="/followers" [ngClass]="{'active': this.router.url==='/followers'}">
+                <div class="row" style="margin-left: 5px">
+                    <mat-icon aria-hidden="false" aria-label="like icon">group</mat-icon>
+                    <p style="margin-left: 15px">Followers</p>
+                </div>
+            </a>
         </li>
         <li class="nav-item">
-            <a href="/following" [ngClass]="{'active': this.router.url==='/following'}">Following</a>
+            <a href="/following" [ngClass]="{'active': this.router.url==='/following'}">
+                <div class="row" style="margin-left: 5px">
+                    <mat-icon aria-hidden="false" aria-label="like icon">group</mat-icon>
+                    <p style="margin-left: 15px">Following</p>
+                </div>
+            </a>
+        </li>
+        <li class="nav-item logout">
+            <!-- <button type="button" (click)="logout()"> -->
+                <div class="row" style="margin-left: 5px" (click)="logout()">
+                    <mat-icon aria-hidden="false" aria-label="like icon">exit_to_app</mat-icon>
+                    <p style="margin-left: 15px">Logout</p>
+                </div>
+            <!-- </button> -->
         </li>
     </ul>
 </div>

@@ -14,16 +14,12 @@ export class FollowingComponent {
 
   ngOnInit() {
     this.userService.getFollowed()
-      .subscribe(response => {
-        response.forEach(element => {
-          this.userService.getUser(element.followedId)
-            .subscribe(user => this.users.push(user));
-        });
-      });
+      .subscribe(response => this.users = response);
   }
 
-  unfollow() {
-    
+  unfollow(id: number) {
+    this.userService.unfollowUser(id)
+      .subscribe(() => { location.reload(); });
   }
 
 }
