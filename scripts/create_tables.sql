@@ -19,9 +19,9 @@ CREATE TABLE posts(
 );
 
 CREATE TABLE followings(
-	follow_id INT PRIMARY KEY,
     follower_id INT NOT NULL,
     followed_id INT NOT NULL,
+    PRIMARY KEY (follower_id, followed_id),
     FOREIGN KEY (follower_id) 
         REFERENCES users (user_id),
     FOREIGN KEY (followed_id) 
